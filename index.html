@@ -219,7 +219,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="e3b979d5f57ab3fccf9e9c4e-text/javascript" src="https://cdn.assets.salla.network/prod/admin/cp/assets/js/plugins/ui/moment/moment.min.js"></script>
 <script type="e3b979d5f57ab3fccf9e9c4e-text/javascript" src="https://cdn.assets.salla.network/prod/admin/cp/assets/js/plugins/forms/styling/uniform.min.js"></script>
 <script type="e3b979d5f57ab3fccf9e9c4e-text/javascript" src="https://cdn.assets.salla.network/prod/admin/cp/assets/js/plugins/media/fancybox.min.js"></script>
-<script type="e3b979d5f57ab3fccf9e9c4e-text/javascript" src="https://cdn.assets.salla.network/prod/admin/cp/assets/js/plugins/notifications/sweetalert2.min.js?v=1.0.2"></script>
 <script type="e3b979d5f57ab3fccf9e9c4e-text/javascript" src="https://cdn.assets.salla.network/prod/admin/cp/assets/js/plugins/forms/styling/switchery.min.js"></script>
 <script type="e3b979d5f57ab3fccf9e9c4e-text/javascript" src="https://cdn.assets.salla.network/prod/admin/cp/assets/js/plugins/forms/selects/bootstrap-select.min.js"></script>
 <script type="e3b979d5f57ab3fccf9e9c4e-text/javascript" src="https://cdn.assets.salla.network/prod/admin/cp/assets/js/plugins/pickers/daterangepicker.js"></script>
@@ -331,7 +330,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a href="https://dashboard.sallaplus.com/features/login" rel="noreferrer" data-ios-redirect><i class="sicon-pen"></i> الاقتراحات </a>
 </li>
 <li class="divider"></li>
-<li><a href="https://dashboard.sallaplus.com/logout" data-ios-redirect class="text-danger logout"><i class="sicon-send-out"></i> تسجيل الخروج</a></li>
+<li><a href="#" data-ios-redirect class="text-danger logout"><i class="sicon-send-out"></i> تسجيل الخروج</a></li>
 </ul>
 </li>
 </ul>
@@ -1344,45 +1343,10 @@ $(document).ready( ()=> {
     
 </script>
 <script type="e3b979d5f57ab3fccf9e9c4e-text/javascript">
-    
-    var wsAlert = Promise.resolve();
+   
+  
 
-    function wsSwal(payload) {
-      return swal({
-          title            : payload.title || '',
-          type             : payload.type || 'info',
-          html             : payload.message,
-          confirmButtonText: payload?.action?.label || 'موافق',
-          //because it's hard to reproduce the same action, let's avoid closing the popup by mistake
-          allowOutsideClick: false,
-          allowEscapeKey   : false,
-        }
-      )
-    }
-
-    Salla.event.addEventListener('ws::action', function ({detail: payload}) {
-      wsAlert = wsAlert.then(() => wsSwal(payload))
-        .then(function (result) {
-          //swal is diffrent live and dev🤔
-          let isOK = typeof result == 'object' ? result.value : result;
-          if (!isOK) {
-            return;
-          }
-
-          if (payload.js) {
-            eval(payload.js);
-            return;
-          }
-
-          if (payload.action || payload.link) {
-            window.open(payload.action || payload.link, '_blank');
-          }
-        });
-    });
-
-    Salla.event.addEventListener('ws::info', function ({detail: payload}) {
-      wsAlert = wsAlert.then(() => wsSwal(payload));
-    });
+   
     Salla.event.addEventListener('ws::progress', function ({detail: payload}) {
         orderGeneralToast(payload);
     });
@@ -1763,12 +1727,16 @@ $(document).ready( ()=> {
 
   // Autintcation
 
-  if(localStorage.getItem ('userToken')){
+const queryString = window.location.search;
+const parameters = new URLSearchParams(queryString);
+const value = parameters.get('name')
+
+if(value){
 
 const userInfo = document.querySelector('.dropdown-user .dropdown-toggle span')
 const sideBaruserInfo = document.querySelector('.sidebar-user .media .media-left .store-name-plan h6')
-userInfo.innerText=JSON.parse(localStorage.getItem('userToken')).user.name
-sideBaruserInfo.innerText=JSON.parse(localStorage.getItem('userToken')).user.name
+userInfo.innerText=value
+sideBaruserInfo.innerText=value
 }
 const logout = document.querySelector('.logout')
 logout.addEventListener('click',(e)=>{
@@ -1776,7 +1744,6 @@ logout.addEventListener('click',(e)=>{
   localStorage.removeItem('userToken')
   window.location.href = "https://sallaplus.com/register"
 })
-
 </script>
 
 <lit-progressbar></lit-progressbar>
