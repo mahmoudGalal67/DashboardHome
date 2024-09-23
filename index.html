@@ -16,6 +16,9 @@
         --flag-image-url-x2: url("https://cdn.assets.salla.network/prod/admin/cp/assets/js/plugins/intl-tel-input/img/flags@2x.55c83c669c053a4b1156a965a2beea42.png");
         --flag-image-url: url("https://cdn.assets.salla.network/prod/admin/cp/assets/js/plugins/intl-tel-input/img/flags.05004a2d55372b6a39b657def195e25a.png");
     }
+    .stats-more {
+    display: none !important;
+    }
 </style>
 
 <link href="https://cdn.assets.salla.network/prod/admin/cp/assets/css/icons/fontawesome/styles.min.css" rel="stylesheet" type="text/css">
@@ -51,6 +54,10 @@ body{
   --color-secondary-25:#77C1E3;
   --color-secondary-50:#77C1E3;
 
+}
+
+.text-success{
+    color: #77C1E3 !important;
 }
 
 .navigation li>a {
@@ -293,7 +300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul class="nav navbar-nav">
 <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="sicon-menu"></i></a></li>
 </ul>
-<form class="navbar-form navbar-left" action="https://demo.salla.sa/search" method="get">
+<form class="navbar-form navbar-left" action="" method="get">
 <div class="search-group d-flex ">
 <div class="relative d-flex align-items-center search-input-container">
 <input type="text" id="searchbox" name="keyword" class="form-control search-input input-lg" placeholder="ابحث برقم الطلب ، اسم العميل ، رقم الشحنة" value />
@@ -324,7 +331,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a href="https://dashboard.sallaplus.com/profile" data-ios-redirect><i class="sicon-user"></i> الملف الشخصي </a></li>
 <li><a href="https://dashboard.sallaplus.com/settings/component/notifications" data-ios-redirect><i class="sicon-notification"></i> التنبيهات</a></li>
 
-<li class="highlight"><a href="https://changelog.salla.sa/" rel="noreferrer" data-ios-redirect><i class="sicon-party-horn"></i> تحديثات المنصة </a></li>
+<li class="highlight"><a href="#" rel="noreferrer" data-ios-redirect><i class="sicon-party-horn"></i> تحديثات المنصة </a></li>
 <li class="highlight"><a class="loyalty-points extra-links" data-target-div="loyalty_points_dev" data-target-modal="loyalty_points_modal" data-url="#/marketplace/referrals/loyalty-points"><i class="sicon-gift"></i> نقاط الولاء </a></li>
 <li>
 <a href="https://dashboard.sallaplus.com/features/login" rel="noreferrer" data-ios-redirect><i class="sicon-pen"></i> الاقتراحات </a>
@@ -350,7 +357,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="navbar-collapse collapse my-navbar" id="navbar-user-mobile">
 <div class="navbar-item"><a href="https://dashboard.sallaplus.com/profile"><i class="sicon-user"></i> الملف الشخصي </a></div>
 <div class="navbar-item"><a href="https://dashboard.sallaplus.com/app/alerts"><i class="sicon-notification"></i> التنبيهات</a></div>
-<div class="navbar-item"><a href="https://changelog.salla.sa/" target="_blank"><i class="sicon-party-horn"></i> تحديثات المنصة </a></div>
+<div class="navbar-item"><a href="#" target="_blank"><i class="sicon-party-horn"></i> تحديثات المنصة </a></div>
 <div class="navbar-item"><a href="https://dashboard.sallaplus.com/features/login" target="_blank"><i class="sicon-pen"></i> الاقتراحات </a></div>
 <div class="navbar-item">
 <a class="loyalty-points" data-target-div="loyalty_points_dev" data-target-modal="loyalty_points_modal" data-url="#/marketplace/referrals/loyalty-points">
@@ -402,7 +409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </h6>
 <div>
 <div class="store-link dropdown">
-<a href="https://salla.sa/giftshop2024/?expires=1726645731&amp;identifier=2094195128&amp;utm_source=dashboard&amp;signature=fc89d7149eaa5776253ca7fb8876bf11b5e60d5a3fb237f8cafaa0f328039cbe" target="_blank" class="btn visit-store">
+<a href="\#" target="_blank" class="btn visit-store">
 زيارة المتجر
 <i class="sicon-keyboard_arrow_left"></i>
 </a>
@@ -1193,14 +1200,7 @@ $(document).ready( ()=> {
 <a href="/" target="_blank"> بلس سلة</a> &copy; 2024
 </div>
 
-<div class="alert-box alert-box--upgrade sticky bottom p-0">
-<div class="content-wrap shift-center">
-<article>
-<span class="mr-20"> <b>عجبتك التجربة؟</b> انطلق بتجارتك اليوم مع سلة بسهولة و بدون أي عمولة!</span>
-</article>
-<a href="http://localhost:5173/register" class="btn-tiffany btn-xlg ml-20 text-bold text-style-none">انشئ متجرك مجاناً</a>
-</div>
-</div> </div>
+ </div>
 
 </div>
 
@@ -1744,6 +1744,15 @@ logout.addEventListener('click',(e)=>{
   localStorage.removeItem('userToken')
   window.location.href = "https://sallaplus.com/register"
 })
+</script>
+<script>
+
+setTimeout( ()=> {  const visists = document.querySelectorAll('.stats-number')
+    console.log(visists);
+    Array.from(visists).map((item)=>{
+        item.innerText=Math.floor((Math.random() * 10)+1) *100
+    })
+},4000)
 </script>
 
 <lit-progressbar></lit-progressbar>
